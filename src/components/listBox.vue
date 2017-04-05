@@ -188,7 +188,7 @@ export default {
 		}
 
 		.typeTitle{
-			font-size: 2em;
+			font-size: 1.3em;
 		}
 
 		.type{
@@ -197,7 +197,7 @@ export default {
 		}
 
 		.content{
-			font-size: 1.5em;
+			font-size: 1.1em;
 		}
 	}
 

@@ -1,19 +1,23 @@
 <template>
-  <div id="app">
+  <div id="app" :style="{height:height}">
+    <transition name="fade">
+      <v-loading @loadend="loadend=true;height='auto'" v-show="!loadend"></v-loading>
+    </transition>
     <main>
       <v-header class="fixedheader"></v-header>
       <v-box></v-box>
-      <v-carousel class="carousel" :num='6'></v-carousel>
+      <v-contentBox :types="features"></v-contentBox>
       <v-listBox :types="modules">
         <div class="title">Modules</div>
       </v-listBox>
-      <v-contentBox :types="features"></v-contentBox>
+      <!-- <v-carousel class="carousel" :num='6'></v-carousel> -->
     </main>
-    <v-footer class="footer"></v-footer>
+    <v-footer></v-footer>
   </div>
 </template>
 
 <script>
+import loading from './components/loading.vue'
 import fullScreenBox from './components/fullScreenBox.vue'
 import contentBox from './components/contentBox.vue'
 import listBox from './components/listBox.vue'
@@ -52,7 +56,8 @@ export default {
           name : 'Functions',
           content :
           [
-            'requestAnimation'
+            'requestAnimation',
+            'slide'
           ]
         },
         {
@@ -83,10 +88,13 @@ export default {
           name : 'Flexible',
           content : 'You can design your Components and Mixins base on it on your way.'
         }
-      ]
+      ],
+      loadend : false,
+      height : '100vh'
     }
   },
   components : {
+    vLoading : loading,
     vBox : fullScreenBox,
     vContentBox : contentBox,
     vListBox : listBox,
@@ -99,6 +107,10 @@ export default {
 
 <style lang="scss">
 @import "~../style/sticky-footer";
+
+.fade-enter, .fade-leave-active{
+  opacity: 0;
+}
 
 ::-webkit-scrollbar{
    width: 10px;
@@ -120,7 +132,8 @@ export default {
 
 html,body{
   font-size: 16px;
-
+  width: 100%;
+  height:100%;
 }
 
 a{
@@ -131,6 +144,7 @@ a{
 #app{
   width: 100%;
   @include sticky-footer;
+  overflow: hidden;
 }
 
 .fixedheader{
@@ -139,4 +153,16 @@ a{
   left:0;
 }
 
+.toTopButton{
+  position:fixed;
+  right: 3em;
+  bottom:3em;
+  height: 0;
+  width: 3%;
+  color: #333;
+  font-size: 2em;
+  text-align:center;
+  padding-bottom: 3%;
+  background:rgba(200,200,200,.8);
+}
 </style>

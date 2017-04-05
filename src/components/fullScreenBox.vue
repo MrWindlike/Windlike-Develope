@@ -2,9 +2,11 @@
 	<div class="fullScreenBox">
 		<div class="contentBox">
 			<div class="title">Welcome To Windlike !</div>
-			<div class="moreContent"><i>You can learn how to build responsive websites faster here with Vue and Sass.Vue is the progressive JavaScript framework.Sass is the most mature, stable, and powerful professional grade CSS extension language in the world.</i></div>
-			<div class="lessContent"><i>You can learn how to build responsive websites faster here with Vue and Sass.</i></div>
-			<a href="" class="borderButton"><i>Get Started >></i></a>
+			<div class="moreContent"><i>You can learn how to build RESPONSIVE websites faster here with Vue and Sass.Vue is the progressive JavaScript framework.Sass is the most mature, stable, and powerful professional grade CSS extension language in the world.</i></div>
+			<div class="lessContent"><i>You can learn how to build RESPONSIVE websites faster here with Vue and Sass.</i></div>
+			<a href="" class="borderButton">
+				Get Started >>
+			</a>
 		</div>	
 	</div>
 </template>
@@ -39,8 +41,8 @@ export default {
 		width: 100%;
 		height: 100%;
 		background:radial-gradient(at 50% 50%,rgba(#333,.3) 0, rgba(#333,.8) 70%);
-
 	}
+	
 	.contentBox{
 		position:absolute;
 		left: 50%; top:50%;
@@ -59,6 +61,7 @@ export default {
 			border:1px white solid;
 			cursor:pointer;
 			background-color:rgba(255,255,255,.1);
+			font-style: italic;
 
 			&:hover{
 				animation: glassShine 1s ease infinite;
@@ -149,5 +152,6 @@ export default {
 	.title{
 		font-family: BrushScriptStd;
 	}
+
 }
 </style>

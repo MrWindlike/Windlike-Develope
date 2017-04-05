@@ -3,11 +3,13 @@
 		<div class="wrap">
 			<div class="title">Features</div>
 			<div class="types">
-				<div class="type" v-for="item of types">
-					<div class="typeLogo"></div>
-					<div class="typeTitle">{{item.name}}</div>
-					<div class="content">{{item.content}}</div>
-				</div>
+				<transition name="fade" v-for="item of types">
+					<div class="type" v-show="show">
+						<div class="typeLogo"></div>
+						<div class="typeTitle">{{item.name}}</div>
+						<div class="content">{{item.content}}</div>
+					</div>
+				</transition>
 			</div>
 		</div>
 	</div>
@@ -24,8 +26,16 @@ export default {
   },
   data () {
     return {
-
+    	show : false
     };
+  },
+  mounted : function(){
+  	var _this = this;
+  	var y = this.$el.getBoundingClientRect().top - this.$el.offsetHeight/1.9;
+  	document.addEventListener('scroll', function(event){
+  		if(document.body.scrollTop > y)
+  			_this.show = true;
+  	});
   }
 };
 </script>
@@ -34,9 +44,16 @@ export default {
 @import "~../../style/gradient-line";
 @import "~../../style/folded-corner";
 
+.fade-enter,.fade-leave-active{
+	opacity:0;
+	transform:translate(0,50%);
+}
+
 .contentBox{
+	position: relative;
 	background-color:rgb(240,240,240);
 	width:100%;
+	min-height:632px;
 	padding:4em 0;
 
 	.wrap{
@@ -55,19 +72,36 @@ export default {
 			.type{
 				@include folded-corner($background:rgb(245,245,245));
 				box-shadow: 0px 0px 0px 2px rgba(#333,0.2);
+				transition: opacity .3s ease, transform .25s ease;
 
-				&:nth-of-type(1) .typeLogo:before{
-					content: "\e900";
+				&:nth-of-type(1){
+					transition-delay:.25s;
+
+					.typeLogo:before{
+						content: "\e900";
+					}
 				}
-				&:nth-of-type(2) .typeLogo:before{
-					content: "\e901";
+				&:nth-of-type(2){
+					transition-delay:.5s;
+					 .typeLogo:before{
+						content: "\e901";
+					}
 				}
-				&:nth-of-type(3) .typeLogo:before{
-					content: "\e902";
+				&:nth-of-type(3){
+					transition-delay:.75s;
+					
+					 .typeLogo:before{
+						content: "\e902";
+					}
 				}
-				&:nth-of-type(4) .typeLogo:before{
-					content: "\e005";
+				&:nth-of-type(4){
+					transition-delay:1s;
+					
+					 .typeLogo:before{
+						content: "\e005";
+					}
 				}
+
 				&:hover .typeLogo:before{
 					color:white;
 					background:#333;

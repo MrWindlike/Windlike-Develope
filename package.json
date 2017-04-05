@@ -5,7 +5,8 @@
   "author": "Windlike",
   "private": true,
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot --host 192.168.1.101",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot --host 192.168.1.100",
+    "start": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
     "build": "cross-env NODE_ENV=production webpack --config production.js --progress --hide-modules --color"
   },
   "dependencies": {

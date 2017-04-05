@@ -3,7 +3,7 @@
 		<div class="list" @click="toggle"></div>
 		<div class="title">Windlike</div><!-- 
 	 --><div class="navWrap" :style="{height:navHeight}">
-			<a href="" class="nav active">Home</a><a href="" class="nav">Document</a><a href="" class="nav">About</a>
+			<a href="" class="nav active">Home</a><a href="" class="nav">Document</a><a href="" class="nav">About</a><a href="http://www.wind1ike.info" class="nav">WebApp</a>
 			<div
 			class="border"
 			:style="{width:borderWidth,
@@ -61,6 +61,8 @@ export default {
 	   			_this.background = _this.$el.style.background.replace(/rgb/,'rgba').replace(/\)/, ', 0.5)');
 	   		}
 	   	}
+	   	else
+	   		_this.background = '#3A3C3E';
    	});
 
     this.borderChange(this.$el.getElementsByClassName('active')[0]);
@@ -132,7 +134,7 @@ export default {
 		}
 	}
 
-	@media all and (min-width: 769px){
+	@media all and (min-width: 1201px) , (min-width:769px) and (max-width:1200px){
 		&{
 			background:$big_background;
 		}
@@ -171,6 +173,18 @@ export default {
 			background: white;
 			transition: all ease;
 		}
+	}
+
+	@media all and (min-width:769px) and (max-width:1200px){
+
+		.title{
+			font-size:1.8em;	
+		}
+
+		.nav{
+			font-size: 1.2em;
+		}
+
 	}
 
 	@media all and (max-width: 768px){
