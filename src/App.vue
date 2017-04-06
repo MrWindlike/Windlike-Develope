@@ -13,11 +13,13 @@
       <!-- <v-carousel class="carousel" :num='6'></v-carousel> -->
     </main>
     <v-footer></v-footer>
+    <v-topButton></v-topButton>
   </div>
 </template>
 
 <script>
 import loading from './components/loading.vue'
+import topButton from './components/topButton.vue'
 import fullScreenBox from './components/fullScreenBox.vue'
 import contentBox from './components/contentBox.vue'
 import listBox from './components/listBox.vue'
@@ -94,6 +96,7 @@ export default {
     }
   },
   components : {
+    vTopButton : topButton,
     vLoading : loading,
     vBox : fullScreenBox,
     vContentBox : contentBox,
@@ -109,7 +112,7 @@ export default {
 @import "~../style/sticky-footer";
 
 .fade-enter, .fade-leave-active{
-  opacity: 0;
+  opacity:0;
 }
 
 ::-webkit-scrollbar{
@@ -151,18 +154,5 @@ a{
   position: fixed;
   top: 0;
   left:0;
-}
-
-.toTopButton{
-  position:fixed;
-  right: 3em;
-  bottom:3em;
-  height: 0;
-  width: 3%;
-  color: #333;
-  font-size: 2em;
-  text-align:center;
-  padding-bottom: 3%;
-  background:rgba(200,200,200,.8);
 }
 </style>
