@@ -1,15 +1,21 @@
 <template>
 	<div class="loading">
 		<div class="loadingWrap">
-			<div class="loadingBox">
+			<!-- <div class="loadingBox">
 				<template v-for="i of 3">
 					<div class="squareLoading" v-for="i of 3"></div>
 				</template>
+			</div> -->
+			<div class="loadingBox">
+				<div class="halfCircle"></div>
+				<div class="halfCircle"></div>
+				<span class="ball"></span>
+				<span class="ball"></span>
+				<span class="ball"></span>
+				<span class="ball"></span>
 			</div>
-			<!-- <div class="circleLoading"></div> -->
 			<div class="loadingBarWrap">
 				<div 
-				@transitionend="loadend"
 				class="loadingBar" 
 				:style="{transitionDuration:time,width:width}">
 					<div class="loadingNum">{{num}}%</div>
@@ -35,29 +41,38 @@ export default {
   },
   mounted : function(){
   	var _this = this;
+  	var time = Math.random() + 2, BeginTime = new Date();
   	var barWrap = _this.$el.getElementsByClassName('loadingBarWrap')[0],
   		bar = _this.$el.getElementsByClassName('loadingBar')[0];
 
   	document.onreadystatechange = function(){
   		if(document.readyState == "interactive"){
-  			_this.num = 99;
-  			_this.width = '99%';
+  			var n = parseInt(Math.random()*10) + 90;
+  			_this.width = n + '%';
   		}
   		else if(document.readyState == "complete"){
-  			_this.time = '0.5s';
-  			_this.num = 100;
-  			_this.width = '100%';
+  			/*at least 2+s*/
+  			var nowTime = new Date(), interval = nowTime - BeginTime;
+  			if(interval > time*1000){
+  				_this.time = '0.5s';
+  				_this.width = '100%';
+  			}
+  			else{
+  				setTimeout(function(){
+  					_this.time = '0.5s';
+  					_this.width = '100%';
+  				},time*1000 - interval);
+  			}
   		}
   	};
   	_this.timer = setInterval(function(){
   		_this.num = parseInt(bar.offsetWidth / barWrap.offsetWidth * 100);
   	}, 10);
   },
-  methods : {
-  	loadend : function(){
-  		var _this = this;
+  watch : {
+  	num : function(){
   		if(this.num === 100){
-  			clearInterval(_this.timer);
+  			clearInterval(this.timer);
 	  		this.$emit('loadend');
   		}
   	}
@@ -67,6 +82,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "~../../style/square-loading";
+@import "~../../style/eatPeas-loading";
 .loading{
 	z-index:100;
 	position:absolute;
@@ -82,24 +98,8 @@ export default {
 		width: 40%;
 		margin:auto;
 		
-		@keyframes rotateAndScale{
-			0% {transform : rotate(0deg) scale(1);}
-			50% {transform : rotate(180deg) scale(1.2);}
-			100% {transform : rotate(360deg) scale(1);}
-		}
-		.circleLoading{
-			margin:0 auto;
-			border-radius:50%;
-			border:3px #555 solid;
-			border-bottom: 0;
-			border-left: 0;
-			width: 40px;
-			height:40px;
-			animation: rotateAndScale 1s infinite linear;
-		}
-
 		.loadingBox{
-			@include square-loading;
+			@include eatPeas-loading($time:0.25s);
 		}
 
 		.loadingBarWrap{
@@ -119,7 +119,8 @@ export default {
 				.loadingNum{
 					position: absolute;
 					top: -1.5em;
-					right:-1.5em;
+					right:0;
+					transform: translate(50%);
 					color:#999;
 					
 					@media all and (min-width:769px){

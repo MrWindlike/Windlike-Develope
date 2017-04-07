@@ -73,7 +73,7 @@ export default {
 		&{
 			width:100%;
 			min-height: 700px;
-			background:url($big_imgUrl) 0 / cover;
+			background:url($big_imgUrl) 0 / cover fixed;
 			background-position:0 75%;
 		}
 
@@ -99,7 +99,7 @@ export default {
 		&{
 			width:100%;
 			min-height: 800px;
-			background:url($big_imgUrl) 0 / cover;
+			background:url($big_imgUrl) 0 / cover fixed;
 			background-size:auto 100%;
 			background-position:50% 75%;
 		}
@@ -124,7 +124,7 @@ export default {
 
 	@media screen and (max-width:768px){
 		&{
-			background:url($small_imgUrl) 0 / cover;
+			background:url($small_imgUrl) 0 / cover fixed;
 			background-position:55% 0;
 		}
 

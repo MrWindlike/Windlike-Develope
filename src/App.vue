@@ -1,7 +1,7 @@
 <template>
   <div id="app" :style="{height:height}">
     <transition name="fade">
-      <v-loading @loadend="loadend=true;height='auto'" v-show="!loadend"></v-loading>
+      <v-loading @loadend="loadend=true;height='auto'" v-if="!loadend"></v-loading>
     </transition>
     <main>
       <v-header class="fixedheader"></v-header>
