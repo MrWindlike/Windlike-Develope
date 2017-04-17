@@ -41,9 +41,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~../../style/gradient-line";
-@import "~../../style/folded-corner";
-
+@import "~../style/Windlike";
 .fade-enter,.fade-leave-active{
 	opacity:0;
 	transform:translate(0,50%);

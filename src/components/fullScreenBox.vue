@@ -4,7 +4,7 @@
 			<div class="title">Welcome To Windlike !</div>
 			<div class="moreContent"><i>You can learn how to build RESPONSIVE websites faster here with Vue and Sass.Vue is the progressive JavaScript framework.Sass is the most mature, stable, and powerful professional grade CSS extension language in the world.</i></div>
 			<div class="lessContent"><i>You can learn how to build RESPONSIVE websites faster here with Vue and Sass.</i></div>
-			<a href="" class="borderButton">
+			<a href="document.html" class="borderButton">
 				Get Started >>
 			</a>
 		</div>	
@@ -25,8 +25,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~../../style/glass-shine";
-@include glass-shine
+@import "~../style/Windlike";
 
 @mixin fullScreenBox($big_imgUrl,$small_imgUrl,$color:white){
 	position: relative;
@@ -56,6 +55,7 @@ export default {
 			line-height: 1.2em;
 		}
 		.borderButton{
+			@include glass-shine
 			padding:.5em;
 			display: inline-block;
 			border:1px white solid;
@@ -63,9 +63,6 @@ export default {
 			background-color:rgba(255,255,255,.1);
 			font-style: italic;
 
-			&:hover{
-				animation: glassShine 1s ease infinite;
-			}
 		}
 	}
 
@@ -145,8 +142,8 @@ export default {
 
 .fullScreenBox{
 	@include fullScreenBox(
-		$big_imgUrl:'../../resource/img/camera-journal-travel@1600x1200.jpg',
-		$small_imgUrl:'../../resource/img/camera-journal-travel@800x600.jpg');
+		$big_imgUrl:'../assets/img/camera-journal-travel@1600x1200.jpg',
+		$small_imgUrl:'../assets/img/camera-journal-travel@800x600.jpg');
 	font-family: Candara, Open Sans;
 
 	.title{

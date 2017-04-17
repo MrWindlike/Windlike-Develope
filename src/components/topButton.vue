@@ -14,19 +14,16 @@ export default {
   },
   methods : {
   	toTop : function(){
-  		function animate (time) {
-        requestAnimationFrame(animate)
-        TWEEN.update(time)
+      var start = new Date();
+      var _run  = function(){
+        var end = new Date();
+    		var top = Tween.Expo.easeInOut(end - start, document.body.scrollTop, -document.body.scrollTop,600);
+        document.body.scrollTop = top;
+        if (end - start < 600) 
+          requestAnimationFrame(_run);
       }
-	  new TWEEN.Tween({ tweeningNumber: document.body.scrollTop })
-	    .easing(TWEEN.Easing.Quadratic.InOut)
-	    .to({ tweeningNumber: 0 }, 500)
-	    .onUpdate(function () {
-	      document.body.scrollTop = this.tweeningNumber.toFixed(0)
-	    })
-	    .start()
-	  animate();
-  	}
+      _run();
+    }
   }
 };
 </script>
@@ -42,20 +39,20 @@ export default {
   border-radius:50%;
   background:rgba(200,200,200,.3);
   transition: background .3s ease;
-  height: 1.8em;
-  width: 1.8em;
-  line-height: 1.8em;
+  height: 2em;
+  width: 2em;
+  line-height: 2em;
 
   &:hover{
   	background:rgba(200,200,200,.6);
   }
 
   @media all and (min-width:1201px) {
-  	font-size: 1.8em;
+  	font-size: 1.5em;
   }
 
   @media all and (min-width:769px) and (max-width:1200px){
-  	font-size: 1.5em;
+  	font-size: 1.2em;
   }
 
   @media all and (max-width:768px) {

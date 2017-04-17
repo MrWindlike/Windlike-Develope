@@ -52,7 +52,7 @@ export default {
   		}
   		else if(document.readyState == "complete"){
   			/*at least 2+s*/
-  			var nowTime = new Date(), interval = nowTime - BeginTime;
+  			/*var nowTime = new Date(), interval = nowTime - BeginTime;
   			if(interval > time*1000){
   				_this.time = '0.5s';
   				_this.width = '100%';
@@ -62,7 +62,9 @@ export default {
   					_this.time = '0.5s';
   					_this.width = '100%';
   				},time*1000 - interval);
-  			}
+  			}*/
+  			_this.time = '0.5s';
+  			_this.width = '100%';
   		}
   	};
   	_this.timer = setInterval(function(){
@@ -81,8 +83,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~../../style/square-loading";
-@import "~../../style/eatPeas-loading";
+@import "~../style/Windlike";
 .loading{
 	z-index:100;
 	position:absolute;
@@ -110,6 +111,7 @@ export default {
 			background:lighten(#DDE4EF, 8);
 
 			.loadingBar{
+				border-radius: 3px;
 				position:relative;
 				transition: width ease-in-out;
 				height:100%;

@@ -3,7 +3,10 @@
 		<div class="list" @click="toggle"></div>
 		<div class="title">Windlike</div><!-- 
 	 --><div class="navWrap" :style="{height:navHeight}">
-			<a href="" class="nav active">Home</a><a href="" class="nav">Document</a><a href="" class="nav">About</a><a href="http://www.wind1ike.info" class="nav">WebApp</a>
+			<a 
+			:href="i.url" 
+			:class="{nav:true, active:active===index}" 
+			v-for="(i,index) of navigations">{{i.name}}</a>
 			<div
 			class="border"
 			:style="{width:borderWidth,
@@ -19,7 +22,17 @@ export default {
 
   name: 'header',
   props : {
-
+  	navigations : {
+  		type : Array
+  	},
+  	active : {
+  		type : Number,
+  		default : 0
+  	},
+  	transparent : {
+  		type : Boolean,
+  		default : true
+  	}
   },
   data () {
     return {
@@ -52,20 +65,24 @@ export default {
    	window.addEventListener('resize', function(){
    		_this.borderChange(_this.$el.getElementsByClassName('active')[0]);
    	});
+   	if(this.transparent === true)
+	   	document.addEventListener('scroll', function(event){
+	   		if(document.body.scrollWidth > 768){
+		   		if(document.body.scrollTop > 60)
+		   			_this.background = '#3A3C3E';
+		   		else{
+		   			_this.background = _this.$el.style.background.replace(/rgb/,'rgba').replace(/\)/, ', 0.5)');
+		   		}
+		   	}
+		   	else
+		   		_this.background = '#3A3C3E';
+	   	});
+   else
+   		this.background = '#3A3C3E';
 
-   	document.addEventListener('scroll', function(event){
-   		if(document.body.scrollWidth > 768){
-	   		if(document.body.scrollTop > 60)
-	   			_this.background = '#3A3C3E';
-	   		else{
-	   			_this.background = _this.$el.style.background.replace(/rgb/,'rgba').replace(/\)/, ', 0.5)');
-	   		}
-	   	}
-	   	else
-	   		_this.background = '#3A3C3E';
-   	});
-
-    this.borderChange(this.$el.getElementsByClassName('active')[0]);
+   setTimeout(function(){
+   		_this.borderChange(_this.$el.getElementsByClassName('active')[0]
+   	)},1);
   },
   methods : {
   	borderChange : function(target){
@@ -93,7 +110,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~../../style/clearfix";
+@import "~../style/Windlike";
+
+a{
+  color:white;
+  text-decoration: none;
+}
 
 .no-transparent{
 	background:#3A3C3E;

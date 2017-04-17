@@ -58,7 +58,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~../../style/gradient-line";
+@import "~../style/Windlike";
 .left-slideIn-enter, .left-slideIn-leave-active{
 	transform:translate(-100%,0);
 	opacity:0;	
@@ -145,7 +145,7 @@ export default {
 
 	@media all and (min-width:1201px){
 		&{
-			background: url(../../resource/img/black-and-white-iphone-smartphone-desk@1600x1068.jpg) 0 / cover no-repeat;
+			background: url(../assets/img/black-and-white-iphone-smartphone-desk@1600x1068.jpg) 0 / cover no-repeat;
 		}
 		
 		.title{
@@ -174,7 +174,7 @@ export default {
 
 	@media all and (max-width:1200px) and (min-width:769px){
 		&{
-			background: url(../../resource/img/black-and-white-iphone-smartphone-desk@1600x1068.jpg) 0 / cover no-repeat;
+			background: url(../assets/img/black-and-white-iphone-smartphone-desk@1600x1068.jpg) 0 / cover no-repeat;
 		}
 
 		.title{
@@ -203,7 +203,7 @@ export default {
 
 	@media all and (max-width:768px){
 		&{
-			background: url(../../resource/img/black-and-white-iphone-smartphone-desk@800x534.jpg) 0 / cover no-repeat;
+			background: url(../assets/img/black-and-white-iphone-smartphone-desk@800x534.jpg) 0 / cover no-repeat;
 		}
 		
 		.title{

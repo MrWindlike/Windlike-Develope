@@ -3,8 +3,9 @@
     <transition name="fade">
       <v-loading @loadend="loadend=true;height='auto'" v-if="!loadend"></v-loading>
     </transition>
+    <v-header class="fixedheader"
+     :transparent="true" :navigations="navs" :active="0"></v-header>
     <main>
-      <v-header class="fixedheader"></v-header>
       <v-box></v-box>
       <v-contentBox :types="features"></v-contentBox>
       <v-listBox :types="modules">
@@ -91,6 +92,24 @@ export default {
           content : 'You can design your Components and Mixins base on it on your way.'
         }
       ],
+      navs : [
+        {
+          name : 'Home',
+          url : 'index.html'
+        },
+        {
+          name : 'Document',
+          url : 'document.html'
+        },
+        {
+          name : 'About',
+          url : ''
+        },
+        {
+          name : 'WebAPP',
+          url : 'http://www.wind1ike.info'
+        }
+      ],
       loadend : false,
       height : '100vh'
     }
@@ -109,7 +128,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~../style/sticky-footer";
+@import "~./style/Windlike";
 
 .fade-enter, .fade-leave-active{
   opacity:0;

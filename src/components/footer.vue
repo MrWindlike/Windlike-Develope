@@ -42,7 +42,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~../../style/gradient-line";
+@import "~../style/Windlike";
+a{
+  color:white;
+  text-decoration: none;
+}
+
 .footer{
 	background:#333;
 	width:100%;
@@ -68,7 +73,7 @@ export default {
 			.code{
 				width: 100px;
 				height: 100px;
-				background:url(../../resource/img/QRCode.png);
+				background:url(../assets/img/QRCode.png);
 				background-size:100% 100%;
 			}
 		}
@@ -81,7 +86,7 @@ export default {
 				width: 15%;
 				padding-bottom: 15%;
 				margin-bottom: 1em;
-				background:url(../../resource/img/V.png);
+				background:url(../assets/img/V.png);
 				background-size:100% 100%;
 
 				&:before{
@@ -124,13 +129,13 @@ export default {
 				}
 
 				&:nth-child(2) .relativeLogo{
-					background:white url(../../resource/img/webpack.jpg) no-repeat;
+					background:white url(../assets/img/webpack.jpg) no-repeat;
 					background-size:80% 80%;
 					background-position:5px;
 				}
 
 				&:nth-child(3) .relativeLogo{
-					background:white url(../../resource/img/github.jpg) no-repeat;
+					background:white url(../assets/img/github.jpg) no-repeat;
 					background-size:100% 100%;
 				}
 

@@ -1,4 +1,8 @@
-@mixin glass-shine{
+@mixin glass-shine($time:1s){
+	&:hover{
+		animation: glassShine $time ease infinite;
+	}
+
 	@keyframes glassShine{
 
 		0% { 

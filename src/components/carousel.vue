@@ -10,27 +10,27 @@
 				@touchend="touchend($event)"
 				@click="now=index"
 				class="img middle"
-				:src="'../../resource/img/' + index + '.jpg'">
+				:src="'../assets/img/' + index + '.jpg'">
 				<img 
 				v-else-if="index===((now + num - 1) % num)"
 				@click="now=index"
 				class="img left"
-				:src="'../../resource/img/' + index + '.jpg'">
+				:src="'../assets/img/' + index + '.jpg'">
 				<img 
 				v-else-if="index===((now + num + 1) % num)"
 				@click="now=index"
 				class="img right"
-				:src="'../../resource/img/' + index + '.jpg'">
+				:src="'../assets/img/' + index + '.jpg'">
 				<img 
 				v-else-if="index<((now + num - 1) % num)"
 				@click="now=index"
 				class="img left-hidden"
-				:src="'../../resource/img/' + index + '.jpg'">
+				:src="'../assets/img/' + index + '.jpg'">
 				<img 
 				v-else-if="index>((now + num + 1) % num)"
 				@click="now=index"		
 				class="img right-hidden"
-				:src="'../../resource/img/' + index + '.jpg'">
+				:src="'../assets/img/' + index + '.jpg'">
 			</template>
 			<div class="left-arrow" @click="now=(now===0?num-1:now-1)"></div>
 			<div class="right-arrow" @click="now=(now+1)%num"></div>
