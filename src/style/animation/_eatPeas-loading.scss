@@ -8,7 +8,7 @@
 		to {transform: rotate(0deg); }
 	}
 	
-	.halfCircle{
+	@at-root .halfCircle{
 		width: $length;
 		height:50%;
 		background:$background;
@@ -38,7 +38,7 @@
 		to {transform: translate(10px);opacity:1;}
 	}
 
-	.ball{
+	@at-root .ball{
 		width: 10px;
 		height:10px;
 		background:$background;

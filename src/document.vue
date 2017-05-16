@@ -6,11 +6,13 @@
     <v-header class="fixedheader"
      :transparent="false" :navigations="header" :active="1"></v-header>
     <main>
-      <v-main :msg="msg" @next="changeIndex" :index="index"></v-main>
+      <v-main :msg="msg" :template="template" @next="changeIndex" :index="index"></v-main>
       <v-nav :msg="msg" :i="i" :j="j" @setIndex="setIndex"></v-nav>
+<!--       <iframe :src="src" height="5000px" scrolling="no" frameborder="0"></iframe> -->
     </main>
     <v-footer></v-footer>
     <v-topButton></v-topButton>
+    
   </div>
 </template>
 
@@ -27,6 +29,8 @@ export default {
   data () {
     return {
       msg : null,
+      template : [],
+      src : "",
       loadend : false,
       height : '100vh',
       i : 0,
@@ -62,17 +66,74 @@ export default {
   },
   mounted : function(){
     var _this = this;
-    this.$http({
-      url:"./data/document.json",
-      method : "get"
-    }).then(function(responce){
-      _this.msg = responce.body;
+    axios.get("./data/template.xml").then(function(response){
+      let request = loadXML(response.request.response);
+      let template = request.getElementsByClassName('content');
+      let maintitle = request.getElementsByTagName('h2');
+      let titles = [], sub = [];
+      let index = 0;
+
+      for(let i=0;i<maintitle.length;i++){
+          let subtitle = request.getElementsByTagName('main')[i].getElementsByTagName('h3');
+          let array = [];
+          sub = [];
+          titles[i] = {};
+          titles[i].maintitle = maintitle[i].innerHTML;
+          
+          for(let j=0;j<subtitle.length;j++){
+            sub.push(subtitle[j].innerHTML);
+            array.push(template[index]);
+            index++;
+          }
+          _this.template.push(array);
+          titles[i].subtitles = sub;
+      }
+
+      _this.msg = titles;
+      console.log(response.request.response);
+
     });
+   
+    /*$.ajaxPrefilter( function (options) {
+      if (options.crossDomain && jQuery.support.cors) {
+        var http = (window.location.protocol === 'http:' ? 'http:' : 'https:');
+        options.url = http + '//cors-anywhere.herokuapp.com/' + options.url;
+        //options.url = "http://cors.corsproxy.io/url=" + options.url;
+      }
+    });
+   var musicCode;          
+   var share_link="http://mp.weixin.qq.com/s/QoR_2jy94pMbXgCqBAmI0w";//微信文章地址
+
+   $.get(
+     share_link,
+      function (response) {
+          console.log("> ", response); 
+          var html = response;
+          html=html.replace(/data-src/g, "src"); 
+
+          var begin = html.indexOf("voice_encode_fileid") + 21; 
+          musicCode = html.substring(begin,begin + 28);
+
+          html=html.replace(/\/cgi-bin/g, "https://mp.weixin.qq.com/cgi-bin");
+          var html_src = 'data:text/html;charset=utf-8,' + html;
+          $("iframe").attr("src" , html_src);
+          $("<audio autoplay src=\'http://res.wx.qq.com/voice/getvoice?mediaid=" + musicCode + "\'/>").appendTo($("body"));
+  });*/
+  
+  //http://res.wx.qq.com/voice/getvoice?mediaid=MzIyOTE4NjcxNl8yNjU0NDU0Njc2
+   /*axios.get(
+        "http://cors-anywhere.herokuapp.com/http://mp.weixin.qq.com/s?timestamp=1492953376&src=3&ver=1&signature=hzvwxkrn2Ax8yggRkJOZAUVbeka5MjxD*1k98H-kRyobQIm06WV4czCddSWlfTs4s79qdRoG43LNJkK4LxGkqY8s6MhhwBgNmFtleoBGEMj*BLXkitgwSV7kOBJs5wA*Zi4PkOoDQD3YQsIpthG5agJdFBx5CWtPjc12IYWF2vE="
+    ).then(function(response){
+      var html = response.request.response;
+      html=html.replace(/data-src/g, "src");
+      var html_src = 'data:text/html;charset=utf-8,' + html;
+      _this.src = html_src;
+    });*/
   },
   methods : {
     changeIndex : function(index){
-      for(var i = 0;index >= this.msg[i].contents.length;i++){
-        index -= this.msg[i].contents.length;
+      for(var i = 0;index >= this.msg[i].subtitles.length;i++){
+        index -= this.msg[i].subtitles.length;
       }
       this.i = i;
       this.j = index;
@@ -83,8 +144,7 @@ export default {
       this.i = array[0];
       this.j = array[1];
       for(var index = 0;index < this.i;index++){
-        this.index += this.msg[index].contents.length;
-        console.log(this.index);
+        this.index += this.msg[index].subtitles.length;
       }
       this.index += this.j;
     }
@@ -115,6 +175,7 @@ export default {
   margin:0;
   padding:0;
   box-sizing: border-box;
+  font-family: Times New Roman;
 }
 
 html,body{
@@ -138,7 +199,18 @@ html,body{
 main{
   position:relative;
   margin:60px auto 0;
-  width:100%;
-  max-width:1200px;
+  display: inline-block;
+  width: 100%;
+  max-width: 1400px;
+  
+}
+
+iframe{
+  overflow: visible;
+  width: 100%;
+
+  &::-webkit-scrollbar{
+     width: 0px; 
+  }
 }
 </style>

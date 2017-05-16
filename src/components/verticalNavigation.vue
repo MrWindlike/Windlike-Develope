@@ -9,8 +9,8 @@
 				<div 
 				@click="setIndex(firstIndex,secondIndex)"
 				:class="{secondNav:true,active:i===firstIndex&&j===secondIndex}" 
-				v-for="(content,secondIndex) of item.contents"
-				v-show="firstIndex===i&&show">{{content.subtitle}}</div>
+				v-for="(subtitle,secondIndex) of item.subtitles"
+				v-show="firstIndex===i&&show">{{subtitle}}</div>
 			</div>
 			<div 
 			@click="toggleNav"
@@ -76,12 +76,14 @@ export default {
 @import "~../style/Windlike";
 .navWrap{
 	float:left;
-	width:25%;
+	width:1px;
+
 	.navs{
 		z-index: 3;
 		max-height:100%;
 		position:fixed;
-		top:60px;
+		width:150px;
+		
 		&::-webkit-scrollbar{
 		   width: 0px;
 		}	
@@ -135,6 +137,10 @@ export default {
 	}
 
 	@media all and (min-width:769px) {
+		.navs{
+			top:80px;
+		}
+		
 		.active{
 			border-left:2px #333 solid !important;
 			padding-left:calc(0.8em - 2px) !important;	
@@ -157,6 +163,7 @@ export default {
 
 	@media all and (max-width:768px) {
 		.navs{
+			top:60px;
 			text-align: center;
 			background:rgb(240,240,240);
 			width: 100%;

@@ -95,22 +95,22 @@ export default {
 	display:flex;
 	transition:all .6s ease;
 
-	.loadingWrap{
+	@at-root .loadingWrap{
 		width: 40%;
 		margin:auto;
 		
-		.loadingBox{
+		@at-root .loadingBox{
 			@include eatPeas-loading($time:0.25s);
 		}
 
-		.loadingBarWrap{
+		@at-root .loadingBarWrap{
 			border-radius: 3px;
 			margin-top: 8em;
 			width: 100%;
 			height:5px;
 			background:lighten(#DDE4EF, 8);
 
-			.loadingBar{
+			@at-root .loadingBar{
 				border-radius: 3px;
 				position:relative;
 				transition: width ease-in-out;
@@ -118,7 +118,7 @@ export default {
 				width: 0%;
 				background:#4FC1E9;
 
-				.loadingNum{
+				@at-root .loadingNum{
 					position: absolute;
 					top: -1.5em;
 					right:0;

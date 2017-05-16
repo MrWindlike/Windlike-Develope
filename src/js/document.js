@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import App from '../document.vue'
-import VueResource from 'vue-resource'
+import axios from 'axios';
 require('./functions/Tween.js')
+require('./functions/LoadXML.js')
 require('../style/normalize.css')
 
-
-Vue.use(VueResource);
+window.axios = axios;
 
 new Vue({
   el: '#app',

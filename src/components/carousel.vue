@@ -10,27 +10,27 @@
 				@touchend="touchend($event)"
 				@click="now=index"
 				class="img middle"
-				:src="'../assets/img/' + index + '.jpg'">
+				:src="'./assets/img/' + index + '.jpg'">
 				<img 
 				v-else-if="index===((now + num - 1) % num)"
 				@click="now=index"
 				class="img left"
-				:src="'../assets/img/' + index + '.jpg'">
+				:src="'./assets/img/' + index + '.jpg'">
 				<img 
 				v-else-if="index===((now + num + 1) % num)"
 				@click="now=index"
 				class="img right"
-				:src="'../assets/img/' + index + '.jpg'">
+				:src="'./assets/img/' + index + '.jpg'">
 				<img 
 				v-else-if="index<((now + num - 1) % num)"
 				@click="now=index"
 				class="img left-hidden"
-				:src="'../assets/img/' + index + '.jpg'">
+				:src="'./assets/img/' + index + '.jpg'">
 				<img 
 				v-else-if="index>((now + num + 1) % num)"
 				@click="now=index"		
 				class="img right-hidden"
-				:src="'../assets/img/' + index + '.jpg'">
+				:src="'./assets/img/' + index + '.jpg'">
 			</template>
 			<div class="left-arrow" @click="now=(now===0?num-1:now-1)"></div>
 			<div class="right-arrow" @click="now=(now+1)%num"></div>
@@ -174,7 +174,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@mixin carousel($arrowColor:black,$big_carouselWidth:100%,$middle_carouselWidth:90%,
+
+@mixin carousel($arrowColor:white,$big_carouselWidth:100%,$middle_carouselWidth:90%,
 				$middle_scale:0.4){
 
 
@@ -208,8 +209,13 @@ export default {
 			&:before{
 				content:"\e908";
 				font-family: 'icomoon';
+				background:rgba(0,0,0,.5);
 				font-size: 2.5em;	
-				color:$arrowColor;	
+				color:$arrowColor;
+				transition: background ease .3s;	
+			}
+			&:hover:before{
+				background:rgba(#31c27c,.5);
 			}
 		}
 	
@@ -229,8 +235,13 @@ export default {
 			&:before{
 				content:"\e909";
 				font-family: 'icomoon';
+				background:rgba(0,0,0,.5);
 				font-size: 2.5em;
 				color:$arrowColor;
+				transition: background ease .3s;
+			}
+			&:hover:before{
+				background:rgba(#31c27c,.5);
 			}
 		}
 		.indexWrap{
@@ -282,7 +293,7 @@ export default {
 			}
 
 			.left{
-				left:0px;
+				left:-70px;
 				transform: scale(0.81);
 				opacity: 0.71;
 
@@ -298,7 +309,7 @@ export default {
 			}
 
 			.right{
-				right:0px;
+				right:-70px;
 				transform:scale(0.81);
 				opacity: 0.71;
 
@@ -350,7 +361,7 @@ export default {
 
 			.index{
 				&:before{
-					width:20px;
+					width:25px;
 					margin:0 3px;
 				}
 			}
