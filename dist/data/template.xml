@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<div>
+   <main>
+      <h2>Overview</h2>
+      <h3>PreText</h3>
+      <div class="content">
+         Components just use with Vue,and you should install Sass.
+      </div>
+      <h3>Normalize.css</h3>
+      <div class="content">
+         For improved cross-browser rendering, we use <a href='http://necolas.github.io/normalize.css/'>Normalize.css</a>, a project by Nicolas Gallagher and Jonathan Neal.
+      </div>
+      <h3>File structure</h3>
+      <div class="content">
+         <pre class="code">
+         Windlike/
+            ├── assets/
+            │       ├── fonts/
+            │       └── img/
+            │   
+            ├── components/
+            │         └── *.vue
+            │    
+            ├──js/
+            │    └── function/
+            │             └── *.js
+            └── style/
+                    └──Windlike.scss
+         </pre>
+      </div>
+      <h3>PC first</h3>
+      <div class="content">
+         To ensure proper rendering and touch zooming, add the viewport meta tag to your &lt;head&gt;.
+         <pre class="code">
+            <div class="codeType">HTML</div>
+   &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+            </pre>
+      </div>
+   </main>
+   <main>
+      <h2>Mixins</h2>
+      <h3>Animation</h3>
+      <div class="content">
+         <h4>EatPeasLoading</h4>
+         <div class="EatPeasLoading example">
+             <div class="halfCircle"> </div>
+             <div class="halfCircle"> </div>
+             <span class="ball"> </span>
+             <span class="ball"> </span>
+             <span class="ball"> </span>
+             <span class="ball"> </span>
+         </div>
+        <pre class="code">
+             <div class="codeType">HTML</div>
+   &lt;div class="EatPeasLoading"&gt;
+       &lt;div class="halfCircle"&gt;&lt;/div&gt;
+       &lt;div class="halfCircle"&gt;&lt;/div&gt;
+       &lt;span class="ball"&gt;&lt;/span&gt;
+       &lt;span class="ball"&gt;&lt;/span&gt;
+       &lt;span class="ball"&gt;&lt;/span&gt;
+       &lt;span class="ball"&gt;&lt;/span&gt;
+   &lt;/div&gt;
+         </pre>
+         <pre class="code">
+             <div class="codeType">SCSS</div>
+   .EatPeasLoading{
+       @include eatPeas-loading($background:#333,$length:40px,$time:0.3s);
+   }
+         </pre>
+         <h4>SquareLoading</h4>
+         <div class="SquareLoading example">
+                 <div class="squareLoading"> </div>
+                 <div class="squareLoading"> </div>
+                 <div class="squareLoading"> </div>
+                 <div class="squareLoading"> </div>
+                 <div class="squareLoading"> </div>
+                 <div class="squareLoading"> </div>
+                 <div class="squareLoading"> </div>
+                 <div class="squareLoading"> </div>
+                 <div class="squareLoading"> </div>
+         </div>
+         <pre class="code">
+             <div class="codeType">HTML</div>
+   &lt;div class="SquareLoading example"&gt;
+       &lt;template v-for="i of 3"&gt;
+           &lt;div class="squareLoading" v-for="i of 3"&gt;&lt;/div&gt;
+       &lt;/template&gt;
+   &lt;/div&gt;
+         </pre>
+         <pre class="code">
+             <div class="codeType">SCSS</div>
+   .SquareLoading{
+       @include square-loading($color:#555,$time:1.5s,$length:40px);
+   }
+         </pre>
+         <h4>GlassShine</h4>
+         <div class="GlassShine example">Button</div>
+         <pre class="code">
+             <div class="codeType">SCSS</div>
+   .GlassShine{
+       @include glass-shine($time:1s);
+       background-color:rgba(0,0,0,.2);
+       display:inline-block;
+       font-size:1.5em;
+       padding:.5em;
+       border:1px black solid;
+       cursor:pointer;
+   }                   
+         </pre>
+      </div>
+      <h3>Input</h3>
+      <div class="content">
+         <h4>Button</h4>
+         <div class="PrimaryButton example">PrimaryButton</div>
+         <div class="InfoButton example">InfoButton</div>
+         <div class="SuccessButton example">SuccessButton</div>
+         <div class="WarningButton example">WarningButton</div>
+         <div class="DangerButton example">DangerButton</div>
+         <p>$type:primary | info | success | warning | danger;</p>
+         <pre class="code">
+             <div class="codeType">SCSS</div>
+.PrimaryButton{
+    @include button($type:primary,$textColor:white,$color:#337ab7);
+}
+         </pre>
+         <h4>Text</h4>
+         <input type="text" class="input" placeholder="Input"/>
+      </div>
+      <h3>Navigation</h3>
+      <div class="content">
+         <div class="TrapezoidNav">TrapezoidNav</div>
+            <pre class="code">
+                <div class="codeType">SCSS</div>
+.TrapezoidNav{
+    @include trapezoid-nav($background:#ccc, $color : black, $text-decoration: none);
+    font-size:1.5em;
+}
+            </pre>
+      </div>
+      <h3>other</h3>
+      <div class="content">
+          <div class="AngleBox example">AngleBox</div>
+            <pre class="code">
+                <div class="codeType">SCSS</div>
+.AngleBox{
+    @include angle-box($angle:bottom-right,$color:#58D4FF,$textColor:white,$type:primary);
+}
+            </pre>
+            <div class="FoldedCorner example">FoldedCorner</div>
+            <pre class="code">
+                <div class="codeType">SCSS</div>
+.FoldedCorner{
+    @include folded-corner($background:#58a, $line-height:1.5em);
+    color:white;
+    display: inline-block;
+}
+            </pre>
+            <h4>GradientLine</h4>
+            <div class="GradientLine example"> </div>
+            <pre class="code">
+                <div class="codeType">SCSS</div>
+.GradientLine{
+    @include gradient-line($width:100%,$height:2px, $color:black, $bottom:0);
+}
+            </pre>
+      </div>
+   </main>
+   <h2>Functions</h2>
+   <main>
+      <h3>Tween</h3>
+      <div class="content">
+         <textarea class="code" style="height:200px">
+/*
+ * Tween.js
+ * t: current time（当前时间）
+ * b: beginning value（初始值）
+ * c: change in value（变化量）
+ * d: duration（持续时间）
+*/
+var Tween = {
+    Linear: function(t, b, c, d) { return c*t/d + b; },
+    Quad: {
+        easeIn: function(t, b, c, d) {
+            return c * (t /= d) * t + b;
+        },
+        easeOut: function(t, b, c, d) {
+            return -c *(t /= d)*(t-2) + b;
+        },
+        easeInOut: function(t, b, c, d) {
+            if ((t /= d / 2) &lt; 1) return c / 2 * t * t + b;
+            return -c / 2 * ((--t) * (t-2) - 1) + b;
+        }
+    },
+    Cubic: {
+        easeIn: function(t, b, c, d) {
+            return c * (t /= d) * t * t + b;
+        },
+        easeOut: function(t, b, c, d) {
+            return c * ((t = t/d - 1) * t * t + 1) + b;
+        },
+        easeInOut: function(t, b, c, d) {
+            if ((t /= d / 2) &lt; 1) return c / 2 * t * t*t + b;
+            return c / 2*((t -= 2) * t * t + 2) + b;
+        }
+    },
+    Quart: {
+        easeIn: function(t, b, c, d) {
+            return c * (t /= d) * t * t*t + b;
+        },
+        easeOut: function(t, b, c, d) {
+            return -c * ((t = t/d - 1) * t * t*t - 1) + b;
+        },
+        easeInOut: function(t, b, c, d) {
+            if ((t /= d / 2) &lt; 1) return c / 2 * t * t * t * t + b;
+            return -c / 2 * ((t -= 2) * t * t*t - 2) + b;
+        }
+    },
+    Quint: {
+        easeIn: function(t, b, c, d) {
+            return c * (t /= d) * t * t * t * t + b;
+        },
+        easeOut: function(t, b, c, d) {
+            return c * ((t = t/d - 1) * t * t * t * t + 1) + b;
+        },
+        easeInOut: function(t, b, c, d) {
+            if ((t /= d / 2) &lt; 1) return c / 2 * t * t * t * t * t + b;
+            return c / 2*((t -= 2) * t * t * t * t + 2) + b;
+        }
+    },
+    Sine: {
+        easeIn: function(t, b, c, d) {
+            return -c * Math.cos(t/d * (Math.PI/2)) + c + b;
+        },
+        easeOut: function(t, b, c, d) {
+            return c * Math.sin(t/d * (Math.PI/2)) + b;
+        },
+        easeInOut: function(t, b, c, d) {
+            return -c / 2 * (Math.cos(Math.PI * t/d) - 1) + b;
+        }
+    },
+    Expo: {
+        easeIn: function(t, b, c, d) {
+            return (t==0) ? b : c * Math.pow(2, 10 * (t/d - 1)) + b;
+        },
+        easeOut: function(t, b, c, d) {
+            return (t==d) ? b + c : c * (-Math.pow(2, -10 * t/d) + 1) + b;
+        },
+        easeInOut: function(t, b, c, d) {
+            if (t==0) return b;
+            if (t==d) return b+c;
+            if ((t /= d / 2) &lt; 1) return c / 2 * Math.pow(2, 10 * (t - 1)) + b;
+            return c / 2 * (-Math.pow(2, -10 * --t) + 2) + b;
+        }
+    },
+    Circ: {
+        easeIn: function(t, b, c, d) {
+            return -c * (Math.sqrt(1 - (t /= d) * t) - 1) + b;
+        },
+        easeOut: function(t, b, c, d) {
+            return c * Math.sqrt(1 - (t = t/d - 1) * t) + b;
+        },
+        easeInOut: function(t, b, c, d) {
+            if ((t /= d / 2) &lt; 1) return -c / 2 * (Math.sqrt(1 - t * t) - 1) + b;
+            return c / 2 * (Math.sqrt(1 - (t -= 2) * t) + 1) + b;
+        }
+    },
+    Elastic: {
+        easeIn: function(t, b, c, d, a, p) {
+            var s;
+            if (t==0) return b;
+            if ((t /= d) == 1) return b + c;
+            if (typeof p == "undefined") p = d * .3;
+            if (!a || a &lt; Math.abs(c)) {
+                s = p / 4;
+                a = c;
+            } else {
+                s = p / (2 * Math.PI) * Math.asin(c / a);
+            }
+            return -(a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p)) + b;
+        },
+        easeOut: function(t, b, c, d, a, p) {
+            var s;
+            if (t==0) return b;
+            if ((t /= d) == 1) return b + c;
+            if (typeof p == "undefined") p = d * .3;
+            if (!a || a &lt; Math.abs(c)) {
+                a = c; 
+                s = p / 4;
+            } else {
+                s = p/(2*Math.PI) * Math.asin(c/a);
+            }
+            return (a * Math.pow(2, -10 * t) * Math.sin((t * d - s) * (2 * Math.PI) / p) + c + b);
+        },
+        easeInOut: function(t, b, c, d, a, p) {
+            var s;
+            if (t==0) return b;
+            if ((t /= d / 2) == 2) return b+c;
+            if (typeof p == "undefined") p = d * (.3 * 1.5);
+            if (!a || a &lt; Math.abs(c)) {
+                a = c; 
+                s = p / 4;
+            } else {
+                s = p / (2  *Math.PI) * Math.asin(c / a);
+            }
+            if (t &lt; 1) return -.5 * (a * Math.pow(2, 10* (t -=1 )) * Math.sin((t * d - s) * (2 * Math.PI) / p)) + b;
+            return a * Math.pow(2, -10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p ) * .5 + c + b;
+        }
+    },
+    Back: {
+        easeIn: function(t, b, c, d, s) {
+            if (typeof s == "undefined") s = 1.70158;
+            return c * (t /= d) * t * ((s + 1) * t - s) + b;
+        },
+        easeOut: function(t, b, c, d, s) {
+            if (typeof s == "undefined") s = 1.70158;
+            return c * ((t = t/d - 1) * t * ((s + 1) * t + s) + 1) + b;
+        },
+        easeInOut: function(t, b, c, d, s) {
+            if (typeof s == "undefined") s = 1.70158; 
+            if ((t /= d / 2) &lt; 1) return c / 2 * (t * t * (((s *= (1.525)) + 1) * t - s)) + b;
+            return c / 2*((t -= 2) * t * (((s *= (1.525)) + 1) * t + s) + 2) + b;
+        }
+    },
+    Bounce: {
+        easeIn: function(t, b, c, d) {
+            return c - Tween.Bounce.easeOut(d-t, 0, c, d) + b;
+        },
+        easeOut: function(t, b, c, d) {
+            if ((t /= d) &lt; (1 / 2.75)) {
+                return c * (7.5625 * t * t) + b;
+            } else if (t &lt; (2 / 2.75)) {
+                return c * (7.5625 * (t -= (1.5 / 2.75)) * t + .75) + b;
+            } else if (t &lt; (2.5 / 2.75)) {
+                return c * (7.5625 * (t -= (2.25 / 2.75)) * t + .9375) + b;
+            } else {
+                return c * (7.5625 * (t -= (2.625 / 2.75)) * t + .984375) + b;
+            }
+        },
+        easeInOut: function(t, b, c, d) {
+            if (t &lt; d / 2) {
+                return Tween.Bounce.easeIn(t * 2, 0, c, d) * .5 + b;
+            } else {
+                return Tween.Bounce.easeOut(t * 2 - d, 0, c, d) * .5 + c * .5 + b;
+            }
+        }
+    }
+}
+         </textarea>
+         <p>This is a example which use Tween to change scrollTop to 0.</p>
+         <pre class="code">
+             <div class="codeType">JavaScript</div>
+var start = new Date();
+var _run  = function(){
+        var end = new Date();
+    var top = Tween.Expo.easeInOut(end - start, document.body.scrollTop, -document.body.scrollTop,600);
+        document.body.scrollTop = top;
+        if (end - start &lt; 600) 
+            requestAnimationFrame(_run);
+    }
+_run();
+         </pre>
+      </div>
+   </main>
+   <h2>Components</h2>
+   <main>
+      <h3>Login</h3>
+      <div class="content"></div>
+      <h3>Alert</h3>
+      <div class="content"></div>
+      <h3>Carousel</h3>
+      <div class="content"></div>
+      <h3>SubmitButton</h3>
+      <div class="content"></div>
+      <h3>WaterFall</h3>
+      <div class="content"></div>
+   </main>
+   
+</div>
+
